@@ -1,5 +1,3 @@
-`include "not_gate.v"
-
 module not_tb();
     reg a;
     wire y;

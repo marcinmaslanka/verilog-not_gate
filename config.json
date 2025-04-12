@@ -1,6 +1,6 @@
 {
   "DESIGN_NAME": "not_gate",
-  "VERILOG_FILES": ["dir::not_gate.v"],
+  "VERILOG_FILES": ["dir::not.v"],
   "CLOCK_PERIOD": 25.0,
   "CLOCK_PORT": "clk",
   "SYNTH_STRATEGY": "DELAY 4",

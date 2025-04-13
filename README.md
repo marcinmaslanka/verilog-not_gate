@@ -44,6 +44,23 @@ Place the following files into it
 And run the Openlane2
   openlane config.json
 
-...after 2-3 minutes
+...after 2 you will see the flow is complete.
+Go to the runs Directory, then the latest RUN... 
 
+to see the Power Consumptions goto:
+  /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/54-openroad-stapostpnr/nom_tt_025C_1v80
+  and select power.rpt
+
+to see the Core Arer and Die Area goto:
+  /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/13-openroad-floorplan
+  and select openroad-floorplan.log
+
+to see the Layout goto:
+  /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/final/gds
+  there you will find not.gds File , write klayout and hit enter
+
+to see the Heatmap goto:
+  /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/final/odb
+  write openroad -gui
+  
   

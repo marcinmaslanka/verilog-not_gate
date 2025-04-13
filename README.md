@@ -1,6 +1,7 @@
 # 🔌 NOT Gate Project – Verilog Simulation, Synthesis, and Layout
 
-This project demonstrates how to simulate, synthesize, and layout a simple NOT gate using IIC-OSIC-TOOLS, GTKWave, Yosys, and OpenLane2.
+This project demonstrates the complete digital design flow for a simple NOT gate, including simulation, synthesis, and physical layout.  
+It uses **IIC-OSIC-TOOLS**, **GTKWave**, **Yosys**, and **OpenLane 2**.
 
 📺 Also available as a video series on YouTube:  
 https://www.youtube.com/@marcinmaslanka9621

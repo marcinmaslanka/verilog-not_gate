@@ -2,6 +2,8 @@
 
 This project demonstrates how to simulate, synthesize, and layout a simple NOT gate using IIC-OSIC-TOOLS, GTKWave, Yosys, and OpenLane2.
 
+📺 Also available as a video series on YouTube:  
+https://www.youtube.com/@marcinmaslanka9621
 ---
 
 ## 📁 Directory Setup

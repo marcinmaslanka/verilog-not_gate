@@ -1,66 +1,146 @@
-Procedure how to make a plot from Verilog Code
-make a new directory inside your IIC-OSIC-TOOLS 
-  /foss/designs/SKY/not
-and copy this files into it
-  not.v
-  not_tb.v
-  config.json
+# 🔌 NOT Gate Project – Verilog Simulation, Synthesis, and Layout
 
-how to display Verilog into GTKWAVE:
-  iverilog -o not_tb.vvp not_tb.v not.v
-  vvp not_tb.vvp
-  gtkwave not_tb.vcd
+This project demonstrates how to simulate, synthesize, and layout a simple NOT gate using IIC-OSIC-TOOLS, GTKWave, Yosys, and OpenLane2.
 
-Inside GTKWAVE
-  select your DUT, add the signals to the timeline and with Ctrl+Scroll you can Zoom-Out and see the plot
+---
 
+## 📁 Directory Setup
 
-Procedure how to visualize and syntheszse to Gate Level within Yosys Tool
+Create a new project directory inside your IIC-OSIC-TOOLS environment:
 
-Run Yosys from your Project Directory
-  read_verilog not.v
-  proc
-  stat
-  show -colors 3
-With -ls and -cd you can go into the cell
+```bash
+mkdir -p /foss/designs/SKY/not
+```
 
-For synthesis you can follow this procedure
-    Bevor start make sure you have copied the Library into your project directory:
-      cp /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib .
-  
-  techmap
-  write_verilog -noattr not_synth.v
-  abc -liberty sky130_fd_sc_hd__tt_025C_1v80.lib
-  write_verilog -noattr not_synth2.v
-  exit
+Copy the following files into the new directory:
 
+- `not.v` – Verilog source
+- `not_tb.v` – Verilog testbench
+- `config.json` – OpenLane2 configuration file
 
-Procedure how to Synthesys Verillog within Openlane2 
-Got to the Openlane2 inside IIC-OSIC-TOOLS and make a new directory
-  /headless/OpenLane/designs/not
-Place the following files into it
-  not.v
-  config.json
-And run the Openlane2
-  openlane config.json
+---
 
-...after 2 you will see the flow is complete.
-Go to the runs Directory, then the latest RUN... 
+## 📊 View Simulation in GTKWave
 
-to see the Power Consumptions goto:
-  /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/54-openroad-stapostpnr/nom_tt_025C_1v80
-  and select power.rpt
+### 1. Compile and Simulate
 
-to see the Core Arer and Die Area goto:
-  /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/13-openroad-floorplan
-  and select openroad-floorplan.log
+```bash
+iverilog -o not_tb.vvp not_tb.v not.v
+vvp not_tb.vvp
+gtkwave not_tb.vcd
+```
 
-to see the Layout goto:
-  /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/final/gds
-  there you will find not.gds File , write klayout and hit enter
+### 2. GTKWave Instructions
 
-to see the Heatmap goto:
-  /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/final/odb
-  write openroad -gui
-  
-  
+- Select your **DUT** (Device Under Test)
+- Add signals to the timeline
+- Use `Ctrl + Scroll` to zoom in and out on the waveform
+
+---
+
+## 🧠 Synthesis and Visualization using Yosys
+
+### 1. Launch Yosys
+
+```bash
+yosys
+```
+
+Inside the Yosys shell:
+
+```yosys
+read_verilog not.v
+proc
+stat
+show -colors 3
+```
+
+Use `-ls` and `-cd` in the Yosys shell to navigate through cells.
+
+---
+
+### 2. Gate-Level Synthesis
+
+Before you begin, copy the *.lib file into your directory:
+
+```bash
+cp /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib .
+```
+
+Then run the following inside Yosys shell:
+
+```yosys
+techmap
+write_verilog -noattr not_synth.v
+abc -liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+write_verilog -noattr not_synth2.v
+exit
+```
+
+---
+
+## 🏗️ Synthesis and Layout with OpenLane2
+
+### 1. Create Project Directory
+
+```bash
+mkdir -p /headless/OpenLane/designs/not
+```
+
+Copy these files into the new directory:
+
+- `not.v`
+- `config.json`
+
+### 2. Run the Flow
+
+From your Project directory:
+
+```bash
+openlane config.json
+```
+
+... After 2 minutes, the flow will be completed.
+
+---
+
+## 🔍 How to View Results
+
+### 🔌 Power Report
+
+```bash
+/headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/54-openroad-stapostpnr/nom_tt_025C_1v80/power.rpt
+```
+
+### 📐 Core and Die Area
+
+```bash
+/headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/13-openroad-floorplan/openroad-floorplan.log
+```
+
+### 🧱 Layout (GDS File)
+
+```bash
+cd /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/final/gds
+klayout not.gds
+```
+
+### 🔥 Heatmap (GUI)
+
+```bash
+cd /headless/OpenLane/designs/not/runs/RUN_2025-04-13_08-27-15/final/odb
+openroad -gui
+```
+
+---
+
+## ✅ Summary
+
+With this flow, you can:
+
+- Simulate Verilog and visualize results with GTKWave
+- Generate gate-level netlists using Yosys
+- Run full RTL-to-GDSII flow with OpenLane2
+- Analyze power, layout, and area metrics
+
+---
